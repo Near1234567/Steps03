@@ -14,14 +14,15 @@ const defaultData: SiteData = {
   hero: {
     titleTop: "Asmae",
     titleBottom: "Laaroubi",
+
     subtitle: "Artiste Peintre",
+
     location: "Basée à Marrakech",
 
     quote:
       "Chaque toile est un souffle, chaque sculpture est une mémoire du corps.",
 
-    imageUrl:
-      "https://natural-emerald-x8gssmkq9g.edgeone.app/IMG_4842.jpeg",
+    imageUrl: "",
 
     slideshowImages: [
       "https://natural-emerald-x8gssmkq9g.edgeone.app/IMG_4842.jpeg",
@@ -31,6 +32,7 @@ const defaultData: SiteData = {
 
   bio: {
     title: "Cheminement",
+
     subtitle: "L'Ame du Projet",
 
     text: BIO_TEXT,
@@ -48,13 +50,17 @@ const defaultData: SiteData = {
 
   gallery: {
     title: "Collection Privée",
+
     subtitle: "Exposition de prestige",
   },
 
   ui: {
     navHome: "Accueil",
+
     navGallery: "Galerie",
+
     navAbout: "À Propos",
+
     navContact: "Contact",
 
     adminAccess: "Accès Administration",
@@ -121,7 +127,9 @@ const defaultData: SiteData = {
 
   theme: {
     primary: "#2D2D2D",
+
     accent: "#C5A059",
+
     bg: "#FEFDFC",
   },
 
@@ -233,3 +241,4 @@ export const useSiteData = () => {
 
   return context;
 };
+ 
