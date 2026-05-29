@@ -1,4 +1,4 @@
- import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -22,39 +22,6 @@ const Hero: React.FC = () => {
     return () => clearInterval(timer);
   }, [slideshowImages.length]);
 
-  const zoomVariants = {
-    enter: {
-      scale: 1.05,
-      opacity: 0,
-      y: 10,
-    },
-
-    center: {
-      scale: 1,
-      opacity: 1,
-      y: 0,
-
-      transition: {
-        scale: {
-          duration: 1.2,
-          ease: [0.16, 1, 0.3, 1]
-        },
-
-        opacity: {
-          duration: 0.8
-        },
-
-        y: {
-          duration: 0.8
-        }
-      }
-    },
-
-    exit: {
-      opacity: 0
-    }
-  };
-
   return (
     <div
       id="home"
@@ -75,10 +42,10 @@ const Hero: React.FC = () => {
       />
 
       {/* MAIN CONTENT */}
-      <div className="container mx-auto px-6 flex flex-col items-center gap-24 group">
+      <div className="container mx-auto px-6 flex flex-col items-center gap-24">
 
-        {/* TEXT CONTENT */}
-        <div className="order-1 flex flex-col items-center text-center space-y-8 lg:space-y-12 pb-6">
+        {/* TEXT */}
+        <div className="flex flex-col items-center text-center space-y-8 lg:space-y-12">
 
           <motion.div
             initial={{
@@ -263,8 +230,6 @@ const Hero: React.FC = () => {
               delay: 1.1,
               duration: 1
             }}
-
-            className="pt-4"
           >
             <RouterLink
               to="/gallery-full"
@@ -294,19 +259,27 @@ const Hero: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* IMAGE SECTION */}
-        <div className="order-2 flex justify-center items-center w-full">
+        {/* IMAGE */}
+        <div className="flex justify-center items-center w-full">
 
           <motion.div
             key={currentImageIndex}
 
-            variants={zoomVariants}
+            initial={{
+              opacity: 0,
+              scale: 1.04
+            }}
 
-            initial="enter"
+            animate={{
+              opacity: 1,
+              scale: 1
+            }}
 
-            animate="center"
+            transition={{
+              duration: 0.8
+            }}
 
-            className="relative inline-flex items-center justify-center overflow-hidden"
+            className="relative flex items-center justify-center"
           >
             {/* GOLD FRAME */}
             <div
@@ -330,6 +303,7 @@ const Hero: React.FC = () => {
                 "
               >
                 <img
+                  key={currentImageIndex}
                   src={slideshowImages[currentImageIndex]}
                   alt={`Art ${currentImageIndex}`}
 
@@ -340,15 +314,12 @@ const Hero: React.FC = () => {
                     h-auto
                     object-contain
                     rounded-2xl
-                    transition-transform
-                    duration-[8s]
-                    hover:scale-105
                   "
                 />
               </div>
             </div>
 
-            {/* LIGHT OVERLAY */}
+            {/* OVERLAY */}
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-black/5 via-transparent to-black/10 pointer-events-none"></div>
           </motion.div>
 
