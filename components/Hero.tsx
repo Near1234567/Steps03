@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+ import React, { useState, useEffect } from 'react';
+import { motion } from 'motion/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSiteData } from '../context/SiteContext';
@@ -24,52 +24,34 @@ const Hero: React.FC = () => {
 
   const zoomVariants = {
     enter: {
-      scale: 1.08,
+      scale: 1.05,
       opacity: 0,
-      y: 20,
+      y: 10,
     },
 
     center: {
-      zIndex: 1,
       scale: 1,
       opacity: 1,
       y: 0,
 
       transition: {
         scale: {
-          duration: 1.6,
+          duration: 1.2,
           ease: [0.16, 1, 0.3, 1]
         },
 
         opacity: {
-          duration: 1
+          duration: 0.8
         },
 
         y: {
-          duration: 1
+          duration: 0.8
         }
       }
     },
 
     exit: {
-      zIndex: -1,
-      scale: 0.96,
-      opacity: 0,
-      y: -20,
-
-      transition: {
-        scale: {
-          duration: 0.8
-        },
-
-        opacity: {
-          duration: 0.8
-        },
-
-        y: {
-          duration: 0.8
-        }
-      }
+      opacity: 0
     }
   };
 
@@ -315,66 +297,61 @@ const Hero: React.FC = () => {
         {/* IMAGE SECTION */}
         <div className="order-2 flex justify-center items-center w-full">
 
-          <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={currentImageIndex}
 
-            <motion.div
-              key={currentImageIndex}
+            variants={zoomVariants}
 
-              variants={zoomVariants}
+            initial="enter"
 
-              initial="enter"
+            animate="center"
 
-              animate="center"
-
-              exit="exit"
-
-              className="relative inline-flex items-center justify-center overflow-hidden"
+            className="relative inline-flex items-center justify-center overflow-hidden"
+          >
+            {/* GOLD FRAME */}
+            <div
+              className="
+                p-[8px]
+                rounded-3xl
+                bg-gradient-to-br
+                from-[#D7BD8E]
+                via-[#BD9F67]
+                to-[#D7BD8E]
+                shadow-[0_30px_70px_-20px_rgba(189,159,103,0.3)]
+              "
             >
-              {/* GOLD FRAME */}
               <div
                 className="
-                  p-[8px]
-                  rounded-3xl
-                  bg-gradient-to-br
-                  from-[#D7BD8E]
-                  via-[#BD9F67]
-                  to-[#D7BD8E]
-                  shadow-[0_30px_70px_-20px_rgba(189,159,103,0.3)]
+                  rounded-[22px]
+                  border
+                  border-[#B18E50]/40
+                  bg-white
+                  p-2
                 "
               >
-                <div
+                <img
+                  src={slideshowImages[currentImageIndex]}
+                  alt={`Art ${currentImageIndex}`}
+
                   className="
-                    rounded-[22px]
-                    border
-                    border-[#B18E50]/40
-                    bg-white
-                    p-2
+                    max-w-[92vw]
+                    max-h-[75vh]
+                    w-auto
+                    h-auto
+                    object-contain
+                    rounded-2xl
+                    transition-transform
+                    duration-[8s]
+                    hover:scale-105
                   "
-                >
-                  <img
-                    src={slideshowImages[currentImageIndex]}
-                    alt={`Art ${currentImageIndex}`}
-
-                    className="
-                      max-w-[92vw]
-                      max-h-[75vh]
-                      w-auto
-                      h-auto
-                      object-contain
-                      rounded-2xl
-                      transition-transform
-                      duration-[8s]
-                      hover:scale-105
-                    "
-                  />
-                </div>
+                />
               </div>
+            </div>
 
-              {/* LIGHT OVERLAY */}
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-black/5 via-transparent to-black/10 pointer-events-none"></div>
-            </motion.div>
+            {/* LIGHT OVERLAY */}
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-black/5 via-transparent to-black/10 pointer-events-none"></div>
+          </motion.div>
 
-          </AnimatePresence>
         </div>
       </div>
 
