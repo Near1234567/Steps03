@@ -52,7 +52,7 @@ const Hero: React.FC = () => {
     },
 
     exit: {
-      zIndex: 0,
+      zIndex: -1,
       scale: 0.96,
       opacity: 0,
       y: -20,
@@ -315,7 +315,7 @@ const Hero: React.FC = () => {
         {/* IMAGE SECTION */}
         <div className="order-2 flex justify-center items-center w-full">
 
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait" initial={false}>
 
             <motion.div
               key={currentImageIndex}
@@ -328,7 +328,7 @@ const Hero: React.FC = () => {
 
               exit="exit"
 
-              className="relative inline-flex items-center justify-center"
+              className="relative inline-flex items-center justify-center overflow-hidden"
             >
               {/* GOLD FRAME */}
               <div
