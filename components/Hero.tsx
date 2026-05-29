@@ -352,9 +352,7 @@ const Hero: React.FC = () => {
           "
         >
           <motion.div
-            key={
-              slideshowImages[currentImageIndex]
-            }
+            key={currentImageIndex}
 
             initial={{
               opacity: 0,
@@ -399,13 +397,9 @@ const Hero: React.FC = () => {
                 "
               >
                 <img
-                  key={
-                    slideshowImages[
-                      currentImageIndex
-                    ]
-                  }
+                  key={currentImageIndex}
 
-                  src={`${slideshowImages[currentImageIndex]}?v=${currentImageIndex}`}
+                  src={slideshowImages[currentImageIndex]}
 
                   alt={`Art ${currentImageIndex}`}
 
